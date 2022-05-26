@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+<style>
+    #main{
+        margin:50px 400px;
+        border:2px solid grey;
+        padding:10px 20px; 
+    }
+    h2{
+        margin:20px 0px;
+    }
+    #last{
+        display:inline;
+        margin:0px 100px;
+    }
+    #sub{
+        margin:20px 0px;
+    }
+</style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <div id="main">
+    <form method="POST" action="/" onsubmit="return fun()">
+        <h2 align="center">Registartion Form</h2>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">User Name</label>
+          <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="namee">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">RePassword</label>
+          <input type="password" class="form-control" id="repassword" name="repassword">
+        </div>
+        <label for="exampleInputPassword1" class="form-label">Contact No.</label>
+          <input type="text" class="form-control" id="contact" name="contact">
+        <button type="submit" id="sub" class="btn btn-primary" >Submit</button>
+        <div id="last">already registered? <a href="http://localhost:4000/">click here</a></div>
+      </form>
+    </div>
+    <script>
+      let namee=document.getElementById('name');
+let email=document.getElementById('email');
+let password1=document.getElementById('password');
+let password2=document.getElementById('repassword');
+let mobile=document.getElementById('contact');
+ namee.addEventListener('blur',f); 
+function f() { 
+    let reg=/^[a-zA-Z0-9]{0,20}$/;   
+     if(!reg.test(namee.value))
+     {        
+          alert("enter valid name");
+     }
+}
+ email.addEventListener('blur',f2); 
+function f2() { 
+    let reg=/^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[a-zA-Z]{2,4}$/;    
+     if(!reg.test(email.value))
+     {        
+          alert("enter valid email");
+     }
+}
+ mobile.addEventListener('blur',f3); 
+function f3() { 
+    let reg=/^[0-9]{10}$/;   
+     if(!reg.test(mobile.value))
+     {        
+          alert("enter valid mobile no.");
+     }
+}
+ password1.addEventListener('blur',f4); 
+function f4() { 
+    let reg=/^[A-Z]+[a-z]+[0-9]+\W+$/;   
+     if(!reg.test(password1.value))
+     {        
+          alert("enter valid password");
+     }
+}
+ password2.addEventListener('blur',f5); 
+function f5() {    
+     if(password1.value!=password2.value)
+     {        
+          alert("password not matched with original password.try again!");
+     }
+}
+function fun()
+{
+if(!namee.value || !email.value || !password1.value || !password2.value || !mobile.value)
+{
+    alert("fill all the details first");
+    return false;
+}
+else
+{
+    return true;
+}
+}
+    </script>
+</body>
+
+</html>
