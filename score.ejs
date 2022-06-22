@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz score</title>
+    <style>
+      h1{
+        color:green;
+      }
+      #scoree{
+        height:15vh;
+        width:15vh;
+        border:3px solid black;
+        border-radius: 50%;
+        padding:auto;
+        background-color: aqua;
+      }
+      h3{
+        margin-top:40px;
+        margin-left:20px;
+        color:blue;
+      }
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><img src="/crud/logo.svg" height="28px" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/welcome">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/welcome/quiz">Quiz</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/welcome/score">Score</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/welcome/analysis" >Analysis</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/welcome/contact">Contact Us</a>
+          </li>
+          <form action="/logout" method="POST" id="frmm">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="bt" onclick="f()">Logout</a>
+          </li>
+        </form>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+
+   <h1 align="center">Scoreboard</h1>
+   <%if(locals.username){%>
+    <h2> <%= username%>'s score: </h2>
+    <%if(data){%>
+   <div id="scoree">
+    <hr>
+    <h3><%= data.result[0].marks %>/<%= data.result[0].total %></h3>
+   </div>
+   <% } else {%>
+    <h2>Give Quiz first!!</h2><button class="btn btn-outline-success my-2 my-sm-0"><a href="/welcome/quiz">click here</a></button>
+    <% } %>
+   <% } else {%>
+    <h2>login first!!</h2><button class="btn btn-outline-success my-2 my-sm-0"><a href="/login">click here</a></button>
+    <% } %>
+   <script>
+    function f()
+      {
+          flag=confirm("are you sure you want to logout?");
+          if(flag){
+            document.getElementById("frmm").submit();
+          }
+      }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Home</title>
+   
+    <link rel="stylesheet" href="/nicepage.css" media="screen">
+<link rel="stylesheet" href="/Home.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.11.3, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    <style>
+      #immg{
+        border-radius: 20px;
+      }
+      #navv{
+        height:56px;
+      }
+    </style>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navv">
+      <a class="navbar-brand" href="#"><img src="/crud/logo.svg" height="28px" alt=""></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/welcome">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/welcome/quiz">Quiz</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/welcome/score">Score</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/welcome/analysis">Analysis</a>
+          </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/welcome/contact">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="bt" onclick="f()">Logout</a>
+        </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    <section class="u-clearfix u-section-1" id="carousel_3669">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-align-center u-container-style u-layout-cell u-size-30 u-layout-cell-1">
+                <div class="u-container-layout u-valign-top u-container-layout-1">
+                  <h3 class="u-text u-text-default u-text-1">Contact Us</h3>
+                  <div class="u-expanded-width u-form u-form-1">
+                    <form action="/welcome/contact" method="POST"  style="padding: 0;" source="email" name="form">
+                      <div class="u-form-email u-form-group">
+                        <label for="email-daf4" class="u-label" name="email"><b>Email</b></label>
+                        <input type="email" placeholder="Enter a valid email address"  name="email" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="">
+                      </div>
+                      <div class="u-form-group u-form-name">
+                        <label for="name-daf4" class="u-label" name="password"><b>Password</b></label><a href="https://stackoverflow.com/questions/45478293/username-and-password-not-accepted-when-using-nodemailer#:~:text=Go%20to%20My%20Account%20%3E%20Sign,a%20name%2C%20e.g.%20%22nodemailer%22"> ( Click here to know your nodemailer password )</a>
+                        <input type="text" placeholder="Enter your nodemailer password"  name="password" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required="">
+                        
+                        <div id="emailHelp" class="form-text"><small>We'll never share your password with anyone else.</small></div>
+                      </div>
+                      <div class="u-form-group u-form-message">
+                        <label for="message-daf4" class="u-label" name="msg"><b>Message</b></label>
+                        <textarea placeholder="" rows="4" cols="50"  name="msg" class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle u-white" required=""></textarea>
+                      </div>
+                      <div class="u-form-agree u-form-group u-form-group-4">
+                        <input type="checkbox"  name="agree" class="u-agree-checkbox" required="">
+                        <label for="agree-f183" class="u-label">I accept the <a href="#">Terms of Service</a>
+                        </label>
+                      </div>
+                      <div class="u-align-left u-form-group u-form-submit">
+                       
+                        <a href="#" class="u-active-palette-1-light-2 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-12 u-btn-1">Submit</a>
+              <input type="submit" value="submit" class="u-form-control-hidden">
+            </div>
+            <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
+            <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
+            <input type="hidden" value="" name="recaptchaResponse">
+                    
+                    </form>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="u-container-style u-image u-layout-cell u-radius-20 u-size-30 u-image-1" data-animation-name="fadeIn" data-animation-duration="1500" data-animation-direction="Right" data-animation-delay="500" data-image-width="900" data-image-height="805">
+                
+               
+                <img src="/jaydev.jpg" alt="" id="immg" width="550px" height="560px">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="u-expanded-width u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+            <div class="u-align-left u-container-style u-list-item u-palette-2-base u-radius-20 u-repeater-item u-shape-round u-list-item-1" data-animation-name="bounceIn" data-animation-duration="1500" data-animation-direction="Right" data-animation-delay="500">
+              <div class="u-container-layout u-similar-container u-container-layout-3">
+                <h5 class="u-text u-text-2"><span class="u-file-icon u-icon u-text-white"><img src="/5.png" alt=""></span>&nbsp;Call Us
+                </h5>
+                <p class="u-text u-text-3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7990554541,<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8306412510
+                </p>
+              </div>
+            </div>
+            <div class="u-align-left u-container-style u-list-item u-palette-2-base u-radius-20 u-repeater-item u-shape-round u-list-item-2" data-animation-name="bounceIn" data-animation-duration="1500" data-animation-direction="Right" data-animation-delay="500">
+              <div class="u-container-layout u-similar-container u-container-layout-4">
+                <h5 class="u-text u-text-4"><span class="u-file-icon u-icon u-text-white"><img src="/6.png" alt=""></span>&nbsp;Location
+                </h5>
+                <p class="u-text u-text-5">Gautam society,Ravapar Road,proper morbi,363641</p>
+              </div>
+            </div>
+            <div class="u-align-left u-container-style u-list-item u-palette-2-base u-radius-20 u-repeater-item u-shape-round u-list-item-3" data-animation-name="bounceIn" data-animation-duration="1500" data-animation-direction="Right" data-animation-delay="500">
+              <div class="u-container-layout u-similar-container u-container-layout-5">
+                <h5 class="u-text u-text-6"><span class="u-file-icon u-icon u-text-white"><img src="/7.png" alt=""></span>&nbsp;Hours
+                </h5>
+                <p class="u-text u-text-7">Mon – Fri …… 11 am – 8 pm, Sat, Sun&nbsp;&nbsp;…… 6 am – 8 pm</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      function f()
+        {
+            flag=confirm("are you sure you want to logout?");
+            if(flag){
+                window.location.href="http://localhost:4500/login";
+            }
+        }
+    </script>
+  </body>
+</html>

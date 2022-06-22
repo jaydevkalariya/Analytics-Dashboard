@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+<script type="text/javascript">
+    var current='<%= current%>';
+	var gtotal='<%= gtotal%>';
+	var max='<%= maxx%>';
+	
+window.onload = function () {
+	var chart = new CanvasJS.Chart("chartContainer",
+	{
+		title:{
+			text: "Average Result (in %)"
+		},
+		legend: {
+			maxWidth: 350,
+			itemWidth: 120
+		},
+		data: [
+		{
+			type: "pie",
+			showInLegend: true,
+			legendText: "{indexLabel}",
+			dataPoints: [
+				{ y: gtotal, indexLabel: "Correct" },
+				{ y: 100-gtotal, indexLabel: "wrong" },
+			]
+		}
+		]
+	});
+	chart.render();
+	var chart2 = new CanvasJS.Chart("chart2",
+	{
+		title:{
+			text: "Your Result: (in %)"
+		},
+		legend: {
+			maxWidth: 350,
+			itemWidth: 120
+		},
+		data: [
+		{
+			type: "pie",
+			showInLegend: true,
+			legendText: "{indexLabel}",
+			dataPoints: [
+				{ y: current, indexLabel: "Correct" },
+				{ y: 100-current, indexLabel: "wrong" },
+			]
+		}
+		]
+	});
+	chart2.render();
+}
+
+</script>
+<style>
+	 #navv{
+        height:56px;
+      }
+    #chartContainer{
+        width:700px;
+        height:500px;
+        border:5px solid black;
+		margin:3vh 6vh;
+    }
+    #chart2{
+        width:700px;
+        height:500px;
+        border:5px solid black;
+		margin:3vh 6vh;
+    }
+    #chart3{
+        width:700px;
+        height:500px;
+        border:5px solid black;
+		margin:3vh 2vh;
+    }
+    .canvasjs-chart-credit{
+        display:none;
+    }
+	.parent{
+		display:flex;
+	}
+	h3{
+		display:inline;
+	}
+	b{
+		color:blue;
+		font-size: 20px;
+	}
+	.main{
+		display:flex;
+	}
+	.a1{
+         float:left;
+		 margin:1vh 6vh;
+	}
+	.a2{
+         float:right;
+		 margin:1vh 0vh;
+		 margin-left:100vh;
+	}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navv">
+		<a class="navbar-brand" href="#"><img src="/crud/logo.svg" height="28px" alt=""></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+		  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  <ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="/welcome">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="/welcome/quiz">Quiz</a>
+			</li>
+			<li class="nav-item">
+			  <a class="nav-link" href="/welcome/score">Score</a>
+			</li>
+			<li class="nav-item active" >
+			  <a class="nav-link" href="/welcome/analysis">Analysis</a>
+			</li>
+		  <li class="nav-item ">
+			<a class="nav-link" href="/welcome/contact">Contact Us</a>
+		  </li>
+		  <form action="/logout" method="POST" id="frmm">
+		  <li class="nav-item">
+			<a class="nav-link" href="#" id="bt" onclick="f()">Logout</a>
+		  </li> 
+		</form>
+		<li class="nav-item">
+			<a class="nav-link" id="bt" href="#" onclick="getPDF()">Generate PDF</a>
+		  </li> 
+		  </ul>
+		  <form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		  </form>
+		</div>
+	  </nav>
+	  <div id="htmlContent">
+	  <h1 align="center"> Analytical Dashboard</h1>
+	  <%if(data){%>
+	  <div class="main">
+	  <div class="a1">
+	  <h3>Name :</h3> <b><%= namee%></b> <br>
+	  <h3>Email :</h3> <b><%= email%></b> <br>
+	  <h3>Score :</h3> <b><%= score%>/<%= total%> (<%= current%>%)</b> <br>
+	</div>
+	<div class="a2">
+	  <h3>Time taken :</h3><b> <span id="timee"></span> </b><br>
+	  <h3>Date :</h3><b> <span id="date"></span></b> <br>
+	  <h3>highest percentage:</h3><b> <%= maxx%>%</b>
+	</div>
+    </div>
+	<div class="parent">
+<div id="chartContainer"></div>
+<div id="chart2"></div>
+<% } else {%>
+   <h2>Give Quiz first to show your analysis!!</h2><button class="btn btn-outline-success my-2 my-sm-0"><a href="/welcome/quiz">click here</a></button>
+    <% } %>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js">
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+
+<script>
+	function f()
+          {
+              flag=confirm("are you sure you want to logout?");
+              if(flag){
+                document.getElementById("frmm").submit();
+              }
+          }
+		var minute=localStorage["minute"];
+	document.getElementById("timee").innerHTML= minute;
+	currentDate = new Date();
+	date = currentDate.getDate();
+	month = currentDate.getMonth();
+	year = currentDate.getFullYear();
+	document.getElementById("date").innerHTML= date +"/"+month+"/"+year;
+</script>
+<script>
+	function getPDF(){
+return html2canvas( document.querySelector('#htmlContent'), {
+    background: "#ffffff",
+    onrendered: function(canvas) {
+        var myImage = canvas.toDataURL("image/jpeg,1.0");
+        // Adjust width and height
+        var imgWidth =  (canvas.width * 30) / 240;
+        var imgHeight = (canvas.height * 60) / 240;
+        // jspdf changes
+        var pdf = new jsPDF('p', 'mm', 'a4');
+        pdf.addImage(myImage, 'png', 1, 2, imgWidth, imgHeight); // 2: 19
+        pdf.save(`analysis.pdf`);
+		window.open(pdf.output('bloburl'),'_blank');
+    }
+});
+}
+</script>
+</body>
+</html>

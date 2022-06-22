@@ -25,7 +25,7 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">Login yourself</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -60,8 +60,20 @@
         </div>
       </nav>
     <div id="main">
-        <form action="/" method="POST">
+        <form action="/login" method="POST">
             <h2 align="center">Login Here</h2>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">User Type</label> <br>
+              <select name="usertype" id="usertype">
+                <option value="superadmin">Super-Admin</option>
+                <option value="admin">Admin</option> 
+                <option value="normal user">Normal user</option> 
+              </select> <br> <br>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputname" class="form-label" >Username</label>
+              <input type="text" class="form-control" id="exampleInputname" name="namee">
+            </div>
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
@@ -76,6 +88,7 @@
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
+            <div id="last">dont have Account? <a href="http://localhost:4500/">Register yourself</a></div>
           </form>
    </div>
 </body>

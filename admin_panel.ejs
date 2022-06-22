@@ -1,0 +1,175 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<script src="stylechange.js"></script>
+  <title>admin panel</title>
+<style>
+   #bold{
+          color:white;
+          margin:0px 200px;
+          margin-top:50px;
+          font-size:20px;
+        }
+</style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="/crud/logo.svg" height="28px" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/contact">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/quiz">Quiz</a>
+        </li>
+        <form action="/new" method="POST" id="frm">
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="fun()">Delete Questions</a>
+        </li>
+      </form> 
+      <form action="/logout" method="POST" id="frmm">
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="bt" onclick="f()">Logout</a>
+      </li>
+    </form> 
+    <%if(locals.username){%>
+      <li class="nav-item">
+        <b id="bold"><%=username%></b>
+      </li>
+      <% } else {%>
+        <script>
+          alert("you not login yet,login first!!");
+          window.location.href='/login';
+        </script>
+      <% } %>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+
+  <div class="container my-4" id="hid">
+    <h2>Add a rating question</h2>
+    <form action="/first" method="POST" name="frm">
+      <div class="form-group">
+        <label for="title">Question</label>
+        <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+        <br>
+         Min range: <input type="text" name="option1"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  max range: <input type="text" name="option2"/><br>
+      </div>
+     
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <h2>Add a True-Flase question</h2>
+    <form action="/second" method="POST">
+      <div class="form-group">
+        <label for="title2">Question</label>
+        <input type="text" class="form-control" id="title2" name="title2" aria-describedby="emailHelp">
+      <br>  <label for="desc">Options</label>
+        <br>
+        A) <input type="text" value="True" name="option1"> mark: <input type="text" name="mark1"/>&nbsp;&nbsp;&nbsp;&nbsp; B) <input type="text" value="False" name="option2"> mark: <input type="text" name="mark2"/><br>
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <h2>Add a multiple choice question</h2>
+    <form action="/third" method="POST">
+      <div class="form-group">
+        <label for="title3">Question</label>
+        <input type="text" class="form-control" id="title3" name="title3" aria-describedby="emailHelp">
+      </div>
+      <div class="form-group">
+        <input type="button" id = "btnAdd" onclick = "AddDropDownList()" value = "Add Options" />
+        <hr />
+        <div id = "dvContainer"></div>
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+      
+    </form>
+  </div>
+
+  <div class="container my-4">
+
+   <form action="" method="POST">
+   </form>
+  </div>
+  <hr>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script>
+    function f()
+        {
+            flag=confirm("are you sure you want to logout?");
+            if(flag){
+              document.getElementById("frmm").submit();
+            }
+        }
+        function fun()
+        {
+  document.getElementById("frm").submit();
+  
+        }
+         var i=0;
+        function AddDropDownList() {
+             i++;
+            var ddlCustomers = document.createElement("input");
+            var ddlCustomers2 = document.createElement("input");
+            ddlCustomers.placeholder = "option"+i;
+            ddlCustomers2.placeholder = "mark"+i;
+            ddlCustomers.name = "option["+i+"]";
+            ddlCustomers2.name = "mark["+i+"]";
+            var dvContainer = document.getElementById("dvContainer")
+            var div = document.createElement("DIV");
+            div.appendChild(ddlCustomers);
+            div.appendChild(ddlCustomers2);
+            var btnRemove = document.createElement("INPUT");
+            btnRemove.value = "Remove";
+            btnRemove.type = "button";
+            btnRemove.onclick = function () {
+                dvContainer.removeChild(this.parentNode);
+                i--;
+            };
+            div.appendChild(btnRemove);
+            dvContainer.appendChild(div);
+        };
+  </script>
+</body>
+
+</html>

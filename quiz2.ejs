@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content=
+		"width=device-width, initial-scale=1.0">
+	<title>
+		Quiz
+	</title>
+
+	<style>
+
+		/* Styling the Body element i.e. Color,
+		Font, Alignment */
+		body {
+			background-color: pink;
+			font-family: Verdana;
+		}
+
+		/* Styling the Form (Color, Padding, Shadow) */
+		form {
+			background-color: #fff;
+			max-width: 800px;
+			margin: 50px auto;
+			padding: 30px 20px;
+			box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.5);
+			font-size:20px;
+		}
+
+		/* Styling form-control Class */
+		.form-control {
+			text-align: left;
+			margin-bottom: 25px;
+		}
+
+		/* Styling form-control Label */
+		.form-control label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		/* Styling form-control input,
+		select, textarea */
+		.form-control input,
+		.form-control select,
+		.form-control textarea {
+			border: 1px solid #777;
+			border-radius: 2px;
+			font-family: Arial, Helvetica, sans-serif;
+			padding: 10px;
+			display: block;
+			width: 80%;
+		}
+
+		/* Styling form-control Radio
+		button and Checkbox */
+		.form-control input[type="radio"],
+		.form-control input[type="checkbox"] {
+			display: inline-block;
+			width: auto;
+		}
+
+		/* Styling Button */
+		button {
+			background-color: #05c46b;
+			border: 1px solid #777;
+			border-radius: 20px;
+			font-family: inherit;
+			font-size: 21px;
+			display: block;
+			width: 50%;
+			margin:auto;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		a{
+			text-decoration: none;
+			color:black;
+		}
+	    .main{
+			display:flex;
+		}
+		output{
+			margin-left: 20px;
+			margin-top:7px;
+		}
+	</style>
+</head>
+
+
+<body>
+	<h1 align="center">Survey Form</h1>
+	<!-- Create Form -->
+	<form class="formm" name="form">
+		<!-- Details -->
+
+        <% for(var i=0;i< data.result.length;i++){ %>
+			
+		<div class="form-control">
+			<label name="ques[<%= i+1%>]" value=<%= data.result[i].question %>>
+				Q.<%= i+1 %><%= data.result[i].question %></label>
+				<% if( data.result[i].type == "TF"){ %>
+			<input type="radio"
+					id="recommed-1"
+					name= "opt[<%= i+1%>]" value="<%= data.result[i].option1 %>"> <%= data.result[i].option1 %></input>
+				<input type="radio"
+					id="recommed-2"
+					name="opt[<%= i+1%>]" value="<%= data.result[i].option2 %>"> <%= data.result[i].option2 %>    </input>
+				<input type="radio"
+					id="recommed-3"
+					name="opt[<%= i+1%>]" value="<%= data.result[i].option3 %>"> <%= data.result[i].option3 %>    </input>
+				<input type="radio"
+					id="recommed-4"
+					name="opt[<%= i+1%>]" value="<%= data.result[i].option4 %>"> <%= data.result[i].option4 %>    </input>
+				<input type="radio"
+					id="recommed-5"
+					name="opt[<%= i+1%>]" value="<%= data.result[i].option5 %>"> <%= data.result[i].option5 %>    </input>
+					<%} else if(data.result[i].type == "mcq"){%>
+						<% ob=JSON.parse(data.result[i].mcq);%>
+						<% for(var j=0;j< Object.keys(ob).length;j++){ %>
+                            <input type="radio"
+					         id="recommed-1"
+					        name= "opt[<%= i+1%>]" value="<%= ob[j] %>"> <%= ob[j] %></input>
+                        <% }%>
+						<%} else {%>
+						<div class="main">
+				<input type="range"
+					id="recommed-1" class="text_input"
+					name= "opt[<%= i+1%>]" value="<%= data.result[i].option1 %>" min="<%= data.result[i].option1 %>" max="<%= data.result[i].option2 %>" oninput="this.nextElementSibling.value=this.value"></input>
+					<output><%= data.result[i].option1 %></output>
+				</div>	
+				<% } %>
+		</div>
+         <% } %>
+		<button onclick="backk()">Back to Home
+		</button>
+	</form>
+<script>
+function backk()
+{ 
+	window.location.href='/';
+	window.history.back();
+}
+function f(val)
+{ 
+	document.getElementById("text_input").value=val;
+}
+	</script>
+</body>
+</html>
+
