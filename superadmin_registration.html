@@ -68,23 +68,23 @@
         <h2 align="center">Registartion Form</h2>
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">User type</label>
-            <input type="text" class="form-control" id="name1" aria-describedby="emailHelp" name="usertype" value="admin" readonly>
-          <label for="exampleInputEmail1" class="form-label">Admin Name</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="usertype" value="Superadmin" readonly>
+          <label for="exampleInputEmail1" class="form-label">SuperAdmin Name</label>
           <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="namee" onchange="f()">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email"  onchange="f2()">
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" onchange="f2()">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" name="password"  onchange="f4()">
+          <input type="password" class="form-control" id="password" name="password" onchange="f4()">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">RePassword</label>
-          <input type="password" class="form-control" id="repassword" name="repassword"  onchange="f5()">
+          <input type="password" class="form-control" id="repassword" name="repassword" onchange="f5()">
         </div>
         <label for="exampleInputPassword1" class="form-label">Contact No.</label>
-          <input type="text" class="form-control" id="contact" name="contact"  onchange="f3()">
+          <input type="text" class="form-control" id="contact" name="contact" onchange="f3()">
         <button type="submit" id="sub" class="btn btn-primary" >Submit</button>
         <div id="last">already registered? <a href="http://localhost:4500/login">click here</a></div>
       </form>
@@ -95,7 +95,6 @@ let email=document.getElementById('email');
 let password1=document.getElementById('password');
 let password2=document.getElementById('repassword');
 let mobile=document.getElementById('contact');
-
 function f() { 
     let reg=/^[a-zA-Z0-9]{0,20}$/;   
      if(!reg.test(namee.value))

@@ -15,7 +15,7 @@ app.use(express.static("_dirname + '/public'"));
 app.set("views",path.join(__dirname));
 app.set('view engine','ejs');
 const nodemailer = require('nodemailer');
-const lib = require("./mail_sent.js");
+
 cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
@@ -404,13 +404,6 @@ app.post("/first", function(req, res){
     title1=req.body.title;
     option1=req.body.option1;
     option2=req.body.option2;
-    sql2="SELECT * FROM `questions` WHERE `question` LIKE '"+title1+"'";
-    connection.query(sql2,
-       function(err,result2,fields)
-           {
-               if(!err && result2.length==0)
-               {
-                   console.log("inserted succesfully");
                    sqli1="INSERT INTO `question_admin` ( `question`,`type`,`option1`,`option2`,`option3`,`option4`,`option5`,`mcq`) VALUES (?)";
                    values11=[title1,"range",option1,option2,0,0,0,0];
                    sql_t1="INSERT INTO `temp_adminn` ( `question`,`type`,`option1`,`option2`,`option3`,`option4`,`option5`,`mcq`) VALUES (?)";
@@ -425,18 +418,8 @@ app.post("/first", function(req, res){
                    connection.query(sql,[values1],
                        function(err,result,fields){});
                    }  
-                    res.send("<script> alert('inserted succesufully');history.back(); </script>");     
-               }
-               else if(result2.length!=0)
-               {  
-                   res.send(
-                       "<script> alert('already registered');history.back(); </script>");
-               }
-               else
-               throw err;
+                    res.send("<script> alert('inserted succesufully');window.location.href='http://localhost:4500/admin'; </script>");     
            });
-  
-});
 
 //to add second type(True-False) questions
 app.post("/second", function(req, res){
@@ -445,12 +428,6 @@ app.post("/second", function(req, res){
     option2=req.body.option2;
     mark1=req.body.mark1;
     mark2=req.body.mark2;
-    sql2="SELECT * FROM `questions` WHERE `question` LIKE '"+title2+"' and `ans` LIKE '"+option1+"'  or  `question` LIKE '"+title2+"' and `ans` LIKE '"+option2+"'";
-    connection.query(sql2,
-       function(err,result2,fields)
-           {
-               if(!err && result2.length==0)
-               {
                    console.log("inserted succesfully");
                    sqli2="INSERT INTO `question_admin` ( `question`,`type`,`option1`,`option2`,`option3`,`option4`,`option5`,`mcq`) VALUES (?)";
                    values22=[title2,"TF",option1,option2,0,0,0,0];
@@ -473,24 +450,16 @@ app.post("/second", function(req, res){
                        function(err,result,fields){});
                    connection.query(sql,[values2],
                        function(err,result,fields){});
-                           res.send("<script> alert('inserted succesufully');history.back(); </script>");
-               }
-               else if(result2.length!=0)
-               {  
-                   res.send(
-                       "<script> alert('already registered');history.back(); </script>");
-               }
-               else
-               throw err;
+                           res.send("<script> alert('inserted succesufully');window.location.href='http://localhost:4500/admin'; </script>");
            });
-  
-});
 
 //to add 3rd type(multiple choices) questions
 app.post("/third", function(req, res){
  title3=req.body.title3;
  var ob={};
  var ob2={};
+ if(req.body.option)
+ {
     for(var i=0;i<req.body.option.length;i++)
     {
         ob[i]=req.body.option[i];
@@ -510,6 +479,11 @@ app.post("/third", function(req, res){
              function(err,result,fields){});
          }        
             res.send("<script> alert('inserted succesufully');window.location.href='http://localhost:4500/admin'; </script>");
+        }
+        else
+        { 
+            res.send("<script> alert('insert options also');window.location.href='http://localhost:4500/admin'; </script>");
+           }
             });
   
 

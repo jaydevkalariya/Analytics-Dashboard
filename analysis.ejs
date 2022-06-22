@@ -182,13 +182,26 @@ window.onload = function () {
                 document.getElementById("frmm").submit();
               }
           }
-		var minute=localStorage["minute"];
-	document.getElementById("timee").innerHTML= minute;
+
 	currentDate = new Date();
 	date = currentDate.getDate();
 	month = currentDate.getMonth();
 	year = currentDate.getFullYear();
 	document.getElementById("date").innerHTML= date +"/"+month+"/"+year;
+
+	currentTime=new Date();
+	hour = currentTime.getHours();
+	min = currentTime.getMinutes();
+	am_pm="AM";
+	if(hour>12)
+	{ 
+		hour-=12;am_pm="PM";
+	}
+	if(hour==0)
+	{ hour=12;
+	}
+	document.getElementById("timee").innerHTML=   hour + "h "
+  + min + "m " + am_pm;
 </script>
 <script>
 	function getPDF(){

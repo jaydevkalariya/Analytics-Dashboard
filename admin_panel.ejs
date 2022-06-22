@@ -77,13 +77,13 @@
 
 
   <div class="container my-4" id="hid">
-    <h2>Add a rating question</h2>
+    <h2>Add a ranging question</h2>
     <form action="/first" method="POST" name="frm">
       <div class="form-group">
         <label for="title">Question</label>
-        <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp">
+        <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp" required>
         <br>
-         Min range: <input type="text" name="option1"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  max range: <input type="text" name="option2"/><br>
+         Min range: <input type="text" name="option1" required/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  max range: <input type="text" name="option2" required/><br>
       </div>
      
       <button type="submit" class="btn btn-primary">Add</button>
@@ -92,10 +92,10 @@
     <form action="/second" method="POST">
       <div class="form-group">
         <label for="title2">Question</label>
-        <input type="text" class="form-control" id="title2" name="title2" aria-describedby="emailHelp">
+        <input type="text" class="form-control" id="title2" name="title2" aria-describedby="emailHelp" required>
       <br>  <label for="desc">Options</label>
         <br>
-        A) <input type="text" value="True" name="option1"> mark: <input type="text" name="mark1"/>&nbsp;&nbsp;&nbsp;&nbsp; B) <input type="text" value="False" name="option2"> mark: <input type="text" name="mark2"/><br>
+        A) <input type="text" value="True" name="option1" required> mark: <input type="text" name="mark1"/>&nbsp;&nbsp;&nbsp;&nbsp; B) <input type="text" value="False" name="option2"> mark: <input type="text" name="mark2" required/><br>
       </div>
       <button type="submit" class="btn btn-primary">Add</button>
     </form>
@@ -103,7 +103,7 @@
     <form action="/third" method="POST">
       <div class="form-group">
         <label for="title3">Question</label>
-        <input type="text" class="form-control" id="title3" name="title3" aria-describedby="emailHelp">
+        <input type="text" class="form-control" id="title3" name="title3" aria-describedby="emailHelp" required>
       </div>
       <div class="form-group">
         <input type="button" id = "btnAdd" onclick = "AddDropDownList()" value = "Add Options" />
@@ -155,6 +155,8 @@
             ddlCustomers2.placeholder = "mark"+i;
             ddlCustomers.name = "option["+i+"]";
             ddlCustomers2.name = "mark["+i+"]";
+            ddlCustomers.setAttribute("required", "");
+            ddlCustomers2.setAttribute("required", "");
             var dvContainer = document.getElementById("dvContainer")
             var div = document.createElement("DIV");
             div.appendChild(ddlCustomers);
