@@ -1,10 +1,11 @@
 # Analytics-Dashboard
+<pre>
 a) sign-up and login sysytem ,
 b) Ask a set of Questions by admin.
 c) User can able to give Quiz and they get their marks and able to see their analysis and download it.
 
 files:
-1) main.js
+1) main.js 
    all main logic is in this file.if you want to run the program or to start the server, nodemon main.js.
    
 2) registration_form.html ,admin_registration.html ,superadmin_registration.html
@@ -48,4 +49,4 @@ files:
    after giving quiz,this page shows the analysis of user.which contain their name,email id,time,date,score with comparision of thier marks with average marks,
    maximum percentage.
    
-11)
+</pre>
