@@ -1,4 +1,5 @@
 # Analytics-Dashboard
+#Run main.js & open localhost:4500
 <pre>
 a) sign-up and login sysytem ,
 b) Ask a set of Questions by admin.
