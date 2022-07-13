@@ -1,0 +1,575 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+<script src="stylechange.js"></script>
+  <title>admin panel</title>
+<style>
+  
+  #formm{
+    overflow:auto;
+    height:85vh;
+    border:2px solid black;
+    width:90%;
+    margin:auto;
+    background-color:lightgray;
+    /* display:none; */
+    border-radius: 10px;
+  }
+  #formm2{
+    overflow:auto;
+    height:85vh;
+    border:2px solid black;
+    width:90%;
+    margin:auto;
+    background-color:lightgray;
+    display:none;
+    border-radius: 10px;
+  }
+  #formm3{
+    overflow:auto;
+    height:85vh;
+    border:2px solid black;
+    width:90%;
+    margin:auto;
+    background-color:lightgray;
+    display:none;
+    border-radius: 10px;
+  }
+  .dell{
+    display:inline;
+  }
+   #bold{
+          color:white;
+          margin:0px 200px;
+          margin-top:50px;
+          font-size:20px;
+        }  
+    .question{
+        margin:0px 100px;
+        font-size: 20px;
+        display:inline;
+    }
+    .tf{
+        margin:0px 180px;font-size: 20px;
+    }
+    .mcq{
+        margin:0px 180px;font-size: 20px;
+    }
+    .main{
+        margin:0px 180px;font-size: 20px;
+    }
+    .del{
+      margin-left:60px;
+    }
+    .del:hover{
+      cursor:pointer;
+    }
+    .del2{
+      margin-left:60px;
+    }
+    .del2:hover{
+      cursor:pointer;
+    }
+    .del3{
+      margin-left:60px;
+    }
+    .del3:hover{
+      cursor:pointer;
+    }
+    .mainnn{
+      display:flex;
+    }
+    .fir{
+      width:50%;
+      border-right:2px solid black;
+    }
+    .sec{
+      width:40%;
+      margin:0px 80px
+    }
+    #uni{
+      width:155px;
+    }
+    #s_b{
+      height:30px;
+      padding:0px 10px;
+    }
+    #img{
+          position:absolute;
+          width:100%;
+          height:100vh;
+          z-index: -1;
+          opacity:0.3;
+        }
+    #frm{
+      display:inline;
+    }
+    #sl{
+      display:inline;
+      width:30px;
+    }
+</style>
+</head>
+
+
+<body onload="intial()">
+  <img src="back2.jpg" alt="" id="img">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#"><img src="/crud/logo.svg" height="28px" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="/adminrole">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin"> <b> Create Quiz</b></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/contact">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/quiz">Quiz</a>
+        </li>
+      <form action="/logout" method="POST" id="frmm">
+      <li class="nav-item">
+        <a class="nav-link" href="#" id="bt" onclick="f()">Logout</a>
+      </li>
+    </form> 
+    <%if(locals.username){%>
+      <li class="nav-item">
+        <b id="bold"><%=username%></b>
+      </li>
+      <% } else {%>
+        <script>
+          alert("you not login yet,login first!!");
+          window.location.href='/login';
+        </script>
+      <% } %>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+     
+  <div class="mainnn">
+    <div class="fir">
+  <h1 align="center">Quiz</h1>
+  <form id="formm">
+      <!-- Details -->
+      
+
+      <% for(var i=0;i< data.result.length;i++){ %>
+          
+      <div>
+        <hr>
+        <input type="checkbox" id="c" class="del">
+          <label class="question" name="ques[<%= i+1%>]" "><b> Q.<%= i+1 %>) <%= data.result[i].question %> </b></label> <button class="btn btn-primary" type="button" id="d<%= i+1%>" onclick="deleting(id)">Delete</button>
+          <input type="hidden" name="ques[<%= i+1%>]" id="ques[<%= i+1%>]" value="<%= data.result[i].question %>"></input>
+              <% if( data.result[i].type == "TF"){ %>
+                <br>
+                <div class="tf">
+          <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= data.result[i].option1 %></input> 
+              <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= data.result[i].option2 %> </input>
+            </div>
+                  <%} else if(data.result[i].type == "mcq"){%>
+                      <% ob=JSON.parse(data.result[i].mcq);%>
+                      <div class="mcq">
+                      <% for(var j=0;j< Object.keys(ob).length;j++){ %>
+                          <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= ob[j] %></input>
+                      <% }%>
+                    </div>
+                      <%} else {%>
+                      <div class="main">
+              <input type="range"
+                  id="recommed-1" class="text_input" name= "opt[<%= i+1%>]" value="<%= data.result[i].option1 %>" min="<%= data.result[i].option1 %>" max="<%= data.result[i].option2 %>" oninput="this.nextElementSibling.value=this.value"></input>
+                  <output><%= data.result[i].option1 %></output>
+              </div>	
+              <% } %>
+      </div>
+       <% } %>
+       <button type="button" onclick="Add('target2')">+</button>
+       <div id="target2">
+        <br>
+         <button id="one" onclick = "Add('first')" type="button">range questions </button>
+         <button id="two" onclick = "Add('second')" type="button">TF questions </button>
+         <button id="three" onclick = "Add('third')" type="button">Multiple questions</button>
+      </div>
+  </form>
+  <form id="formm2">
+      <!-- Details -->
+      
+
+      <% for(var i=0;i< data2.result.length;i++){ %>
+          
+      <div>
+        <hr>
+        <input type="checkbox" id="c" class="del2">
+          <label class="question" name="ques[<%= i+1%>]" "><b> Q.<%= i+1 %>) <%= data2.result[i].question %> </b></label> <button class="btn btn-primary" type="button" id="d<%= i+1%>" onclick="deleting(id)">Delete</button>
+          <input type="hidden" name="ques[<%= i+1%>]" id="ques2[<%= i+1%>]" value="<%= data2.result[i].question %>"></input>
+              <% if( data2.result[i].type == "TF"){ %>
+                <br>
+                <div class="tf">
+          <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= data2.result[i].option1 %></input> 
+              <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= data2.result[i].option2 %> </input>
+            </div>
+                  <%} else if(data2.result[i].type == "mcq"){%>
+                      <% ob=JSON.parse(data2.result[i].mcq);%>
+                      <div class="mcq">
+                      <% for(var j=0;j< Object.keys(ob).length;j++){ %>
+                          <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= ob[j] %></input>
+                      <% }%>
+                    </div>
+                      <%} else {%>
+                      <div class="main">
+              <input type="range"
+                  id="recommed-1" class="text_input" name= "opt[<%= i+1%>]" value="<%= data2.result[i].option1 %>" min="<%= data2.result[i].option1 %>" max="<%= data2.result[i].option2 %>" oninput="this.nextElementSibling.value=this.value"></input>
+                  <output><%= data2.result[i].option1 %></output>
+              </div>	
+              <% } %>
+      </div>
+       <% } %>
+  </form>
+  <form id="formm3">
+    <!-- Details -->
+    
+
+    <% for(var i=0;i< data3.result.length;i++){ %>
+        
+    <div>
+      <hr>
+      <input type="checkbox" id="c" class="del3">
+        <label class="question" name="ques[<%= i+1%>]" "><b> Q.<%= i+1 %>) <%= data3.result[i].question %> </b></label> <button class="btn btn-primary" type="button" id="d<%= i+1%>" onclick="deleting(id)">Delete</button>
+        <input type="hidden" name="ques[<%= i+1%>]" id="ques3[<%= i+1%>]" value="<%= data3.result[i].question %>"></input>
+            <% if( data3.result[i].type == "TF"){ %>
+              <br>
+              <div class="tf">
+        <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= data3.result[i].option1 %></input> 
+            <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= data3.result[i].option2 %> </input>
+          </div>
+                <%} else if(data3.result[i].type == "mcq"){%>
+                    <% ob=JSON.parse(data3.result[i].mcq);%>
+                    <div class="mcq">
+                    <% for(var j=0;j< Object.keys(ob).length;j++){ %>
+                        <input type="radio" class="option" name= "opt[<%= i+1%>]"> <%= ob[j] %></input>
+                    <% }%>
+                  </div>
+                    <%} else {%>
+                    <div class="main">
+            <input type="range"
+                id="recommed-1" class="text_input" name= "opt[<%= i+1%>]" value="<%= data3.result[i].option1 %>" min="<%= data3.result[i].option1 %>" max="<%= data3.result[i].option2 %>" oninput="this.nextElementSibling.value=this.value"></input>
+                <output><%= data3.result[i].option1 %></output>
+            </div>	
+            <% } %>
+    </div>
+     <% } %>
+</form>
+  <form action="/dele" method="POST" id="ffrm"></form>
+  <form action="/deleting" method="POST" id="fffrm"></form>
+</div>
+<div class="sec">
+ 
+  <h1 align="center">Create Quiz</h1>
+  <br>
+  <input type="button" id="mainn" class="btn btn-primary" onclick = "Add('target')" value = "Add Question" />&nbsp;&nbsp;&nbsp;&nbsp;
+  <div class="dell">
+    <button class="dlt btn btn-primary" onclick="deletee()">Delete</button>&nbsp;&nbsp;&nbsp;&nbsp;
+    <form action="/new" method="POST" id="frm">
+        <button class="dlt btn btn-primary" onclick="fun()">Delete All</button>
+    </form> &nbsp;&nbsp;&nbsp;&nbsp;
+    <b>Sort:</b>
+    <select onchange="adddd(event)" id="sl" class="btn btn-primary">
+      <option   id="normal">Normal</option>
+      <option   id="asc">Asending</option>
+      <option  id="dec">Question_Type</option>
+    </select>
+   
+  </div>
+  <div id="target">
+    <br>
+     <button id="one" onclick = "Add('first')">range questions </button>
+     <button id="two" onclick = "Add('second')">TF questions </button>
+     <button id="three" onclick = "Add('third')">Multiple questions</button>
+  </div>
+  <br><br>
+  <div id="first">
+      <h2>Add a ranging question</h2>
+      <form action="/first" method="POST" name="frm">
+        <div class="form-group">
+          <label for="title">Question</label>
+          <input type="text" class="form-control" id="title" name="title" aria-describedby="emailHelp" required>
+          <br>
+           Min range: <input type="text" name="option1" id="uni" required/>  max range: <input type="text" id="uni" name="option2" required/><br> <br>
+           <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+      <div id="second">
+      </form>
+      <h2>Add a True-Flase question</h2>
+      <form action="/second" method="POST">
+        <div class="form-group">
+          <label for="title2">Question</label>
+          <input type="text" class="form-control" id="title2" name="title2" aria-describedby="emailHelp" required>
+        <br>  <label for="desc">Options</label>
+          <br>
+          A) <input type="text" value="True" name="option1" required> mark: <input type="text" name="mark1"/><br> B) <input type="text" value="False" name="option2"> mark: <input type="text" name="mark2" required/><br>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+  </div>
+  <div id="third">
+      <h2>Add a multiple choice question</h2>
+      <form action="/third" method="POST">
+        <div class="form-group">
+          <label for="title3">Question</label>
+          <input type="text" class="form-control" id="title3" name="title3" aria-describedby="emailHelp" required>
+        </div>
+        <div class="form-group">
+          <input type="button" id = "btnAdd" onclick = "AddDropDownList()" value = "Add Options" />
+          <hr />
+          <div id = "dvContainer"></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+      </div> 
+  </div>
+</div>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script>
+    function deleting(id){
+      if(document.getElementById("formm").style.display!="none" )
+      {
+      divv=document.getElementsByClassName('del');
+      for(var i=1;i<=divv.length;i++)
+      {
+       if(id=="d"+i+"")
+       {
+        console.log(id);
+       id="ques["+i+"]";
+       }
+      }
+      console.log(id);
+          d=document.getElementById(id);
+            document.getElementById("fffrm").append(d);
+      document.getElementById("fffrm").submit();
+    }
+    else if(document.getElementById("formm2").style.display!="none"){
+      divv=document.getElementsByClassName('del2');
+      for(var i=1;i<=divv.length;i++)
+      {
+       if(id=="d"+i+"")
+       {
+        console.log(id);
+       id="ques2["+i+"]";
+       }
+      }
+      console.log(id);
+          d=document.getElementById(id);
+            document.getElementById("fffrm").append(d);
+      document.getElementById("fffrm").submit();
+    }
+    else{
+      divv=document.getElementsByClassName('del3');
+      for(var i=1;i<=divv.length;i++)
+      {
+       if(id=="d"+i+"")
+       {
+        console.log(id);
+       id="ques3["+i+"]";
+       }
+      }
+      console.log(id);
+          d=document.getElementById(id);
+            document.getElementById("fffrm").append(d);
+      document.getElementById("fffrm").submit();
+    }
+    }
+    function deletee(){
+      if(document.getElementById("formm").style.display!="none")
+      {
+      divv=document.getElementsByClassName('del');
+      for(var i=0;i<divv.length;i++)
+      {
+        if(divv[i].checked)
+        {
+          d=document.getElementById('ques['+(i+1)+']');
+            document.getElementById("ffrm").append(d);
+        }
+      }
+      document.getElementById("ffrm").submit();
+     }
+     else if(document.getElementById("formm2").style.display!="none"){
+      divv=document.getElementsByClassName('del2');
+      for(var i=0;i<divv.length;i++)
+      {
+        if(divv[i].checked)
+        {
+          d=document.getElementById('ques2['+(i+1)+']');
+            document.getElementById("ffrm").append(d);
+        }
+      }
+      document.getElementById("ffrm").submit();
+     }
+     else{
+      divv=document.getElementsByClassName('del3');
+      for(var i=0;i<divv.length;i++)
+      {
+        if(divv[i].checked)
+        {
+          d=document.getElementById('ques3['+(i+1)+']');
+            document.getElementById("ffrm").append(d);
+        }
+      }
+      document.getElementById("ffrm").submit();
+     }
+    }
+   
+    function f()
+        {
+            flag=confirm("are you sure you want to logout?");
+            if(flag){
+              document.getElementById("frmm").submit();
+            }
+        }
+        function fun()
+        {
+  document.getElementById("frm").submit();
+  
+        }
+         var i=0;
+        function AddDropDownList() {
+             i++;
+            var ddlCustomers = document.createElement("input");
+            var ddlCustomers2 = document.createElement("input");
+            ddlCustomers.placeholder = "option"+i;
+            ddlCustomers2.placeholder = "mark"+i;
+            ddlCustomers.name = "option["+i+"]";
+            ddlCustomers2.name = "mark["+i+"]";
+            ddlCustomers.setAttribute("required", "");
+            ddlCustomers2.setAttribute("required", "");
+            var dvContainer = document.getElementById("dvContainer")
+            var div = document.createElement("DIV");
+            div.appendChild(ddlCustomers);
+            div.appendChild(ddlCustomers2);
+            var btnRemove = document.createElement("INPUT");
+            btnRemove.value = "Remove";
+            btnRemove.type = "button";
+            btnRemove.onclick = function () {
+                dvContainer.removeChild(this.parentNode);
+                i--;
+            };
+            div.appendChild(btnRemove);
+            dvContainer.appendChild(div);
+        };
+        function intial()
+       {
+           document.getElementById("first").style.display="none";
+           document.getElementById("second").style.display="none";
+            document.getElementById("third").style.display="none";
+            document.getElementById("target").style.display="none";
+            document.getElementById("target2").style.display="none";
+       }
+       function adddd(event) {
+        console.log("hi");
+        if(event.target.value==="Normal")
+        {
+          document.getElementById("formm").style.display="block";
+          document.getElementById("formm2").style.display="none";
+          document.getElementById("formm3").style.display="none";
+        }
+        if(event.target.value==="Asending")
+        {
+          document.getElementById("formm").style.display="none";
+          document.getElementById("formm2").style.display="block";
+          document.getElementById("formm3").style.display="none";
+        }
+        if(event.target.value==="Question_Type")
+        {
+          document.getElementById("formm").style.display="none";
+          document.getElementById("formm2").style.display="none";
+          document.getElementById("formm3").style.display="block";
+        }
+       }
+     function Add(id)
+     {
+      
+        if(id=="first")
+        {
+            target=document.getElementById(id);
+            document.getElementById("second").style.display="none";
+            document.getElementById("third").style.display="none";
+        }
+        if(id=="second")
+        {
+            target=document.getElementById(id);
+            document.getElementById("first").style.display="none";
+            document.getElementById("third").style.display="none";
+        }
+        if(id=="third")
+        {
+            target=document.getElementById(id);
+            document.getElementById("second").style.display="none";
+            document.getElementById("first").style.display="none";
+        }
+        if(id=="target2" || id=="target")
+        {
+            target=document.getElementById(id);
+        }
+        
+        if(target.style.display!="none")
+        target.style.display="none";
+        else
+        target.style.display="block";
+     }
+     let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+  </script>
+</body>
+
+</html>

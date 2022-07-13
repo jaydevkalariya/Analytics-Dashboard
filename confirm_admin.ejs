@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .btn-primary{
+            height:50px;
+            width:240px;
+            font-size:20px;
+            /* margin:20px 100px; */
+        }
+        h1{
+            margin:30px 50px;
+        }
+        #bold{
+          color:white;
+          margin:0px 200px;
+          margin-top:50px;
+          font-size:20px;
+        }  
+        iframe{
+         margin:20px auto;
+         display:flex;
+         align-items:center;
+         border-radius: 10px;
+        }
+        .para{
+          font-size: 20px;
+          text-indent: 40px;
+          margin:0px 30px;
+        }
+        .heading{
+          text-indent: 40px;
+          margin-top:30px;
+        }
+        .mainn{
+          display:flex;
+        }
+        .first{
+          width:60%;
+          border:2px solid black;
+          border-radius:10px;
+          margin: 0px auto;
+        }
+        .sec{
+          width:30%;
+          border:2px solid black;
+          border-radius:10px;
+          margin: 0px auto;
+        }
+        .parent{
+          padding:50px 120px;
+        }
+        .btt{
+          margin:20px 0px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><img src="/crud/logo.svg" height="28px" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/adminrole">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/contact">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/quiz">Quiz</a>
+            </li>
+           
+          <form action="/logout" method="POST" id="frmm">
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="bt" onclick="f()">Logout</a>
+          </li>
+        </form> 
+        <%if(locals.username){%>
+          <li class="nav-item">
+            <b id="bold"><%=username%></b>
+          </li>
+          <% } else {%>
+            <script>
+              alert("you not login yet,login first!!");
+              window.location.href='/login';
+            </script>
+          <% } %>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+      <h1>Welcome to the Admin Panel</h1>
+     
+      <div class="mainn">
+    <div class="first">
+      <h2 class="heading">What Is an Admin Panel?</h2>
+      <p class="para">
+        An analytical dashboard is a type of dashboard designed to stimulate analysis.
+         This type of dashboard is a vital tool for analysts and data scientists, but can also be used by middle managers —especially department managers— who need to make decisions and examine the performance of their business area.
+         <br> 
+         </p>
+         <br>
+         <p class="para">  
+         Analytical dashboards are often developed by analysts and data scientists as a tool to support department managers or other senior managers. However, unlike the executive dashboard, analytical dashboards typically contain larges amounts of information, large data sets and are more complex and less clear-cut in structure than other types of dashboards.
+         The major distinctive feature of an analytical dashboard is that, of the four types of dashboards, it is the one that makes the most use of historical data. Comparing and contrasting data across multiple variables is a crucial aspect of data science and data analytics. The purpose of an analytical dashboard is to expose all the information necessary for the right people to identify trends, make comparisons, play with variables and dimensions, and make predictions. <br>
+        </p>
+        <br>
+         <p class="para">  
+          The major distinctive feature of an analytical dashboard is that, of the four types of dashboards, it is the one that makes the most use of historical data. Comparing and contrasting data across multiple variables is a crucial aspect of data science and data analytics.  <br>
+        </p>
+      </div>
+      <div class="sec">
+        <h2 class="heading">what do you want to do?</h2>
+        <div class="parent">
+            
+        <button class="btn btn-primary btt" id="first" onclick="f2()">Preview of Quiz</button>
+        <form action="/createNew" method="post" id="frm3"></form>
+        <button class="btn btn-primary btt"  onclick="f3()">Create new Quiz</button>
+    </form>
+        <form action="/modify" method="post" id="frm4"></form>
+        <button class="btn btn-primary btt"  onclick="f4()">Modify old Quiz</button>
+    </form>
+    <a class="btn btn-primary btt" href='#video'>How to create Quiz?</a>
+        </div>
+      </div>
+    </div>
+        <iframe width="1200" height="550" id="video"
+        src="https://www.youtube.com/embed/OJEQaVT45XA" frameborder="0" allowfullscreen ng-show="showvideo"></iframe>
+     <br>
+         <h3 class="heading">Conclusion</h3>
+         <p class="para">  
+         Undoubtedly, reflecting on the business problems we want to solve, the objectives we want to achieve or who a dashboard is aimed at is an essential prior step before designing it and modelling the data. 
+      </p>
+     
+      <br><br>
+   
+<script>
+     function f()
+          {
+              flag=confirm("are you sure you want to logout?");
+              if(flag){
+                document.getElementById("frmm").submit();
+              }
+          }
+    function f2()
+    {
+        window.location.href='http://localhost:4500/admin/quiz';
+    }
+    function f4(){
+        document.getElementById("frm4").submit();
+    }
+    function f3(){
+        document.getElementById("frm3").submit();
+    }
+</script>
+</body>
+</html>

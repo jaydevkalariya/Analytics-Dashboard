@@ -86,6 +86,12 @@
 			margin-left: 20px;
 			margin-top:7px;
 		}
+		.btt{
+			width:100px;
+			height:30px;
+			background-color:blue;
+			color:#fff;
+		}
 	</style>
 </head>
 
@@ -108,15 +114,7 @@
 				<input type="radio"
 					id="recommed-2"
 					name="opt[<%= i+1%>]" value="<%= data.result[i].option2 %>"> <%= data.result[i].option2 %>    </input>
-				<input type="radio"
-					id="recommed-3"
-					name="opt[<%= i+1%>]" value="<%= data.result[i].option3 %>"> <%= data.result[i].option3 %>    </input>
-				<input type="radio"
-					id="recommed-4"
-					name="opt[<%= i+1%>]" value="<%= data.result[i].option4 %>"> <%= data.result[i].option4 %>    </input>
-				<input type="radio"
-					id="recommed-5"
-					name="opt[<%= i+1%>]" value="<%= data.result[i].option5 %>"> <%= data.result[i].option5 %>    </input>
+				
 					<%} else if(data.result[i].type == "mcq"){%>
 						<% ob=JSON.parse(data.result[i].mcq);%>
 						<% for(var j=0;j< Object.keys(ob).length;j++){ %>

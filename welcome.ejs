@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>welcome</title>
     <style>
+      body{
+        overflow-x: hidden !important;
+      }
         #head{
             margin:30px;
             font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -16,12 +19,113 @@
           margin-top:50px;
           font-size:20px;
         }
+        .star{
+          color: goldenrod;
+          font-size: 2.0rem;
+          padding: 0 1rem; /* space out the stars */
+        }
+        .star::before{
+          content: '\2606';    /* star outline */
+          cursor: pointer;
+        }
+        .star.rated::before{
+          /* the style for a selected star */
+          content: '\2605';  /* filled star */
+        }
+        
+        .stars{
+            counter-reset: rateme 0;   
+            font-size: 2.0rem;
+            font-weight: 900;
+        }
+        .star.rated{
+            counter-increment: rateme 1;
+        }
+        .stars::after{
+            content: counter(rateme) '/5';
+        }
+        #t1{
+          margin-top:10px;
+          margin:0px 600px;
+        }
+        #t2{
+          margin-top:10px;
+          margin:0px 780px;
+        }
+        .comm{
+          width:550px;
+          height:260px;
+          margin:0px 150px;
+          padding:10px 10px;
+          border:2px solid black;
+          overflow:auto;
+          background-color:lightgreen;
+          border-radius:5px;
+          border:2px solid green;
+        }
+        hr{
+          height:1px;
+          background-color:green;
+          border:none;
+        }
+        #mychart{
+          margin:auto;
+        }
+        .mainn{
+          display:flex;
+        }
+        .canvas{
+          height:400px;
+          width:500px;
+         margin:0px 0px;
+        }
+        #img{
+          position:absolute;
+          width:100%;
+          height:300vh;
+          z-index: -1;
+          opacity:0.3;
+        }
+        #nav{
+          position:sticky;
+          top:0;
+          z-index:99;
+        }
+        iframe{
+         margin:20px auto;
+         display:flex;
+         align-items:center;
+         border-radius: 10px;
+        }
+        .para{
+          font-size: 20px;
+          text-indent: 40px;
+          margin:0px 30px;
+        }
+        .heading{
+          text-indent: 40px;
+          margin-top:30px;
+        }
+        .main{
+          display:flex;
+        }
+        .first{
+          width:60%;
+        }
+        .second{
+          width:40%;
+        }
+        #imgg{
+          border-radius:5px;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img src="back2.jpg" alt="" id="img">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav">
         <a class="navbar-brand" href="#"><img src="/crud/logo.svg" height="28px" alt=""></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,7 +173,164 @@
       </nav>
 
       <h1 id="head">Welcome to the Analytic Dashboard</h1>
-      <script>
+      <h2 class="heading">What Is an Analytical Dashboard?</h2>
+      <div class="mainn">
+    <div class="first">
+      <p class="para">
+        An analytical dashboard is a type of dashboard designed to stimulate analysis.
+         This type of dashboard is a vital tool for analysts and data scientists, but can also be used by middle managers —especially department managers— who need to make decisions and examine the performance of their business area.
+         <br> 
+         </p>
+         <br>
+         <p class="para">  
+         Analytical dashboards are often developed by analysts and data scientists as a tool to support department managers or other senior managers. However, unlike the executive dashboard, analytical dashboards typically contain larges amounts of information, large data sets and are more complex and less clear-cut in structure than other types of dashboards.
+         The major distinctive feature of an analytical dashboard is that, of the four types of dashboards, it is the one that makes the most use of historical data. Comparing and contrasting data across multiple variables is a crucial aspect of data science and data analytics. The purpose of an analytical dashboard is to expose all the information necessary for the right people to identify trends, make comparisons, play with variables and dimensions, and make predictions. <br>
+        </p>
+        <br>
+         <p class="para">  
+          The major distinctive feature of an analytical dashboard is that, of the four types of dashboards, it is the one that makes the most use of historical data. Comparing and contrasting data across multiple variables is a crucial aspect of data science and data analytics.  <br>
+        </p>
+      </div>
+      <div class="sec">
+        <img src="/analytic.webp" width="95%" height="530px" alt="" id="imgg">
+      </div>
+    </div>
+        <iframe width="1200" height="550"
+        src="https://www.youtube.com/embed/QoUfxOhyT8A" frameborder="0" allowfullscreen ng-show="showvideo"></iframe>
+     <br>
+         <h3 class="heading">Conclusion</h3>
+         <p class="para">  
+         Undoubtedly, reflecting on the business problems we want to solve, the objectives we want to achieve or who a dashboard is aimed at is an essential prior step before designing it and modelling the data. 
+      </p>
+     
+      <br><br>
+        <!-- alternate codepen version https://codepen.io/mad-d/pen/aJMPWr?editors=0010 -->
+    <h2 align="center">Rate us!!</h2>
+    <div class="stars" data-rating="5" align="center">
+        <span class="star">&nbsp;</span>
+        <span class="star">&nbsp;</span>
+        <span class="star">&nbsp;</span>
+        <span class="star">&nbsp;</span>
+        <span class="star">&nbsp;</span>
+    </div>
+    <form action="/rating" method="POST" name="form">
+      <input type="text" id="point" name="point" value="5" hidden></input>
+      <h3 align="center">Add a comment</h3>
+      <textarea name="comment" cols="53" rows="2" id="t1" placeholder="Add a comment"></textarea>
+      <input type="submit" name="submit"/ id="t2">
+    </form> <hr>
+    <div class="mainn">
+   
+    <div class="comment" id="pass">
+      <h3 align="center">Comments</h3> <br>
+      <div class="comm">
+      <%if(data){%>
+        <% var c1=0,c2=0,c3=0,c4=0,c5=0;sum=0 %>
+          <%for(i=data.result.length-1;i>=0;i--){ %>
+            <% sum+=data.result[i].rating%>
+          <%  if(data.result[i].rating==1){%>
+          <% c1++;}%>
+          <% if(data.result[i].rating==2){ %>
+          <% c2++;}%>
+          <%  if(data.result[i].rating==3){%>
+          <%  c3++;}%>
+          <%  if(data.result[i].rating==4){%>
+          <%  c4++;}%>
+          <% if(data.result[i].rating==5){%>
+          <%  c5++;}%>
+            <b>Email: </b><%= data.result[i].email%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>Rating: </b><%= data.result[i].rating%> <br>
+            <b>Comment: </b><%= data.result[i].comments%> <hr>
+            <%}%>
+            <input type="number" id="s1" value="<%= c1%>" hidden></input>
+            <input type="number" id="s2" value="<%= c2%>" hidden></input>
+            <input type="number" id="s3" value="<%= c3%>" hidden></input>
+            <input type="number" id="s4" value="<%= c4%>" hidden></input>
+            <input type="number" id="s5" value="<%= c5%>" hidden></input>
+            <input type="number" id="avg" value="<%=sum/data.result.length%>" hidden></input>
+        <%}else{%>
+          <p align="center">no comments yet!</p>
+          <%}%>
+        </div>
+    </div>
+    <div class="canvas">
+      <h3>User Rating:</h3>
+      <p>Average <span id="avgg"></span> Rating On the basis of <%= data.result.length %> person's rating</p>
+<canvas id="myChart" style="display: inline;"></canvas>
+
+</div>
+</div>
+
+<script>
+  s1=document.getElementById("s1").value;
+  s2=document.getElementById("s2").value;
+  s3=document.getElementById("s3").value;
+  s4=document.getElementById("s4").value;
+  s5=document.getElementById("s5").value;
+  avg=document.getElementById("avg").value;
+  avg=Math.round(avg*10)/10;
+ document.getElementById("avgg").innerHTML=avg;
+
+var xValues = ["5 star", "4 star", "3 star", "2 star", "1 star"];
+var yValues = [s5,s4,s3,s2,s1];
+var barColors = ["red", "green","blue","orange","brown"];
+
+new Chart("myChart", {
+  type: "horizontalBar",
+  data: {
+  labels: xValues,
+  datasets: [{
+    backgroundColor: barColors,
+    data: yValues
+  }]
+},
+  options: {
+    legend: {display: false},
+    scales: {
+      xAxes: [{
+        drawBorder: true,
+        gridLines:{ drawOnChartArea:false},
+
+        }],
+      yAxes: [{
+        drawBorder: true,
+        gridLines:{ drawOnChartArea:false},
+        }]
+    }
+  }
+});    
+        //initial setup
+        document.addEventListener('DOMContentLoaded', function(){
+            let stars = document.querySelectorAll('.star');
+            stars.forEach(function(star){
+                star.addEventListener('click', setRating); 
+            });
+            
+            let rating = parseInt(document.querySelector('.stars').getAttribute('data-rating'));
+            let target = stars[rating - 1];
+            target.dispatchEvent(new MouseEvent('click'));
+        });
+
+        function setRating(ev){
+            let span = ev.currentTarget;
+            let stars = document.querySelectorAll('.star');
+            let match = false;
+            let num = 0;
+            stars.forEach(function(star, index){
+                if(match){
+                    star.classList.remove('rated');
+                }else{
+                    star.classList.add('rated');
+                }
+                //are we currently looking at the span that was clicked
+                if(star === span){
+                    match = true;
+                    num = index + 1;
+                }
+                star=document.getElementById("point");
+                star.value= num;
+            });
+        }
         function f()
           {
               flag=confirm("are you sure you want to logout?");

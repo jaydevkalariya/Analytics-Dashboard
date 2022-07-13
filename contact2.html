@@ -19,7 +19,17 @@
       }
       #navv{
         height:56px;
+        position:sticky;
+          top:0;
+          z-index:99;
       }
+      #img{
+          position:absolute;
+          width:100%;
+          height:150vh;
+          z-index: -1;
+          opacity:0.3;
+        }
     </style>
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -33,6 +43,7 @@
     <meta property="og:type" content="website">
   </head>
   <body class="u-body u-xl-mode">
+    <img src="/back2.jpg" alt="" id="img">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navv">
       <a class="navbar-brand" href="#"><img src="/crud/logo.svg" height="28px" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -43,7 +54,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/adminrole">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">About</a>
@@ -54,11 +65,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/admin/quiz">Quiz</a>
           </li>
-          <form action="/new" method="POST" id="frm">
-          <li class="nav-item">
-            <a class="nav-link" href="#" onclick="fun()">Delete Questions</a>
-          </li>
-        </form> 
        
         <li class="nav-item">
           <a class="nav-link" href="#" id="bt" onclick="f()">Logout</a>
